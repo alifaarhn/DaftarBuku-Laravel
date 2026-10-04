@@ -9,3 +9,9 @@ Route::get('/', function () {
 });
 
 Route::resource('books', BookController2::class);
+
+Route::get('/books/isbn/{isbn}', function (string $isbn) {
+    $book = \App\Models\Book::where('isbn', $isbn)->firstOrFail();
+
+    return "ISBN: {$book->isbn}<br>Judul: {$book->title}";
+});
